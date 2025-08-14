@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sourav’s Premium Homepage</title>
+
+  <!-- Roboto + Material Icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+
+  <style>
+    /*---------------------------------------
+      1) COLOR TOKENS (Material 3 palette)
+    ---------------------------------------*/
+    :root {
+      --color-bg: #faf9ff;
+      --color-surface: #ffffff;
+      --color-surface-variant: #e7e0ec;
+      --color-primary: #6750a4;
+      --color-on-primary: #ffffff;
+      --color-secondary: #7d5260;
+      --color-on-surface: #1c1b1f;
+      --color-outline: #79747e;
+      --theme-icon: 'light_mode';
+    }
+    html[data-theme="dark"] {
+      --color-bg: #1c1b1f;
+      --color-surface: #262629;
+      --color-surface-variant: #49454f;
+      --color-primary: #d0bcff;
+      --color-on-primary: #381e72;
+      --color-secondary: #eFB8C8;
+      --color-on-surface: #e6e1e5;
+      --color-outline: #938f99;
+      --theme-icon: 'dark_mode';
+    }
+
+    /*---------------------------------------
+      2) GLOBAL RESET & BASES
+    ---------------------------------------*/
+    * { box-sizing: border-box; margin:0; padding:0; }
+    html, body {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-on-surface);
+      overflow-y: auto;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /*---------------------------------------
+      3) LAYOUT CONTAINERS
+    ---------------------------------------*/
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 12px 16px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--color-surface);
+      padding: 12px 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    /*---------------------------------------
+      4) THEME SWITCHER
+    ---------------------------------------*/
+    #theme-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: var(--color-on-surface);
+    }
+
+    /*---------------------------------------
+      5) HEADER CONTENT
+    ---------------------------------------*/
+    .title {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    .status i.material-icons {
+      font-size: 1.2rem;
+    }
+
+    /*---------------------------------------
+      6) CLOCK & GREETING
+    ---------------------------------------*/
+    #clock {
+      font-size: 3rem;
+      font-weight: 500;
+      text-align: center;
+      margin: 24px 0 12px;
+    }
+    .greeting {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    /*---------------------------------------
+      7) WEATHER
+    ---------------------------------------*/
+    .weather {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+    .weather i.material-icons {
+      font-size: 1.4rem;
+      color: var(--color-primary);
+    }
+
+    /*---------------------------------------
+      8) APP WIDGETS
+    ---------------------------------------*/
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+      padding: 0 8px;
+    }
+    .app {
+      background-color: var(--color-surface);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      transition: transform 0.2s;
+    }
+    .app:hover { transform: translateY(-4px); }
+    .app i {
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+    .app span {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Accent colors for each service */
+    .app.instagram i { color: #E1306C; }
+    .app.youtube i   { color: #FF0000; }
+    .app.gmail i     { color: #D44638; }
+    .app.photos i    { color: #4285F4; }
+
+    /*---------------------------------------
+      9) GOOGLE SEARCH BAR
+    ---------------------------------------*/
+    .search {
+      display: flex;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .search input {
+      flex: 1;
+      border: none;
+      padding: 12px 16px;
+      font-size: 1rem;
+    }
+    .search button {
+      background-color: var(--color-primary);
+      color: var(--color-on-primary);
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .search button i.material-icons { font-size: 1.4rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="title">Sourav’s Premium Homepage</div>
+      <div class="status">
+        <i class="material-icons">signal_cellular_4_bar</i><span>120 kb/s</span>
+        <i class="material-icons">battery_std</i><span>63 %</span>
+        <button id="theme-btn">
+          <i class="material-icons" id="theme-icon">light_mode</i>
+        </button>
+      </div>
+    </header>
+
+    <div id="clock">00:00:00</div>
+    <div class="greeting" id="greeting">Good Afternoon, Sourav</div>
+
+    <div class="weather" id="weather">
+      <i class="material-icons">cloud</i>
+      <span>Loading Bithari, WB...</span>
+    </div>
+
+    <div class="apps">
+      <a href="https://www.instagram.com" target="_blank" class="app instagram">
+        <i class="fab fa-instagram"></i><span>Instagram</span>
+      </a>
+      <a href="https://www.youtube.com" target="_blank" class="app youtube">
+        <i class="fab fa-youtube"></i><span>YouTube</span>
+      </a>
+      <a href="https://mail.google.com" target="_blank" class="app gmail">
+        <i class="fas fa-envelope"></i><span>Gmail</span>
+      </a>
+      <a href="https://photos.google.com" target="_blank" class="app photos">
+        <i class="fas fa-camera-retro"></i><span>Photos</span>
+      </a>
+    </div>
+
+    <div class="search">
+      <input id="search-input" type="text" placeholder="Search Google..." />
+      <button id="search-btn">
+        <i class="material-icons">search</i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // 1) CLOCK & GREETING
+    const clockEl = document.getElementById('clock');
+    const greetEl = document.getElementById('greeting');
+    function updateTime() {
+      const now = new Date();
+      const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+      clockEl.textContent = 
+        `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+
+      if (h < 12)      greetEl.textContent = 'Good Morning, Sourav';
+      else if (h < 17) greetEl.textContent = 'Good Afternoon, Sourav';
+      else             greetEl.textContent = 'Good Evening, Sourav';
+    }
+    setInterval(updateTime, 500);
+    updateTime();
+
+    // 2) GOOGLE SEARCH
+    document.getElementById('search-btn').onclick = () => {
+      const q = document.getElementById('search-input').value.trim();
+      if (q) window.location = `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+    };
+    document.getElementById('search-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('search-btn').click();
+    });
+
+    // 3) WEATHER (Open-Meteo API, no key)
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=23.76&longitude=87.49&current_weather=true&timezone=Asia%2FKolkata')
+      .then(r => r.json())
+      .then(data => {
+        const w = data.current_weather;
+        const codes = {
+          0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',
+          45:'Fog',48:'Rime fog',51:'Light drizzle',53:'Moderate drizzle',
+          55:'Dense drizzle',61:'Light rain',63:'Moderate rain',65:'Heavy rain',
+          80:'Rain showers',95:'Thunderstorm',96:'Hail',99:'Severe hail'
+        };
+        const icon = w.weathercode === 0 ? 'sunny' :
+                     w.weathercode <= 3  ? 'partly_cloudy' :
+                     'rainy';
+        document.querySelector('#weather i').textContent = icon;
+        document.querySelector('#weather span').textContent =
+          `${w.temperature.toFixed(1)}°C, ${codes[w.weathercode]} – Bithari, WB`;
+      })
+      .catch(()=> {
+        document.querySelector('#weather span').textContent = 'Unavailable';
+      });
+
+    // 4) THEME TOGGLER
+    const themeBtn  = document.getElementById('theme-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    themeBtn.addEventListener('click', () => {
+      const html = document.documentElement;
+      html.dataset.theme = html.dataset.theme === 'light' ? 'dark' : 'light';
+      themeIcon.textContent = getComputedStyle(html).getPropertyValue('--theme-icon').replace(/['"]/g,'');
+    });
+  </script>
+
+  <!-- FontAwesome (for colored icons) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
